@@ -1,0 +1,61 @@
+# Chạy ứng dụng
+docker-compose up --build
+
+# Test API với Postman
+
+# Đăng ký người dùng (POST)
+POST http://localhost:8080/api/auth/register
+Body: {"username": "testuser", "password": "123456", "role": "USER"}
+
+# Đăng nhập (POST)
+POST http://localhost:8080/api/auth/login
+Body: username=testuser&password=123456
+Header: Content-Type: application/x-www-form-urlencoded
+
+# Lấy thông tin người dùng hiện tại (GET)
+GET http://localhost:8080/api/auth/current-user
+
+# Đăng xuất (POST)
+POST http://localhost:8080/api/auth/logout
+
+# ADMIN: Lấy danh sách người dùng (GET)
+GET http://localhost:8080/api/admin/users
+
+# ADMIN: Tạo người dùng (POST)
+POST http://localhost:8080/api/admin/users
+Body: {"username": "newuser", "password": "123456", "role": "USER"}
+
+# ADMIN: Cập nhật người dùng (PUT)
+PUT http://localhost:8080/api/admin/users/1
+Body: {"username": "updateduser", "password": "newpassword", "role": "ADMIN"}
+
+# ADMIN: Xóa người dùng (DELETE)
+DELETE http://localhost:8080/api/admin/users/1
+
+# ADMIN: Lấy danh sách bàn (GET)
+GET http://localhost:8080/api/admin/tables
+
+# ADMIN: Tạo bàn (POST)
+POST http://localhost:8080/api/admin/tables
+Body: {"tableNumber": 1, "content": "Góc cửa sổ", "status": "AVAILABLE"}
+
+# ADMIN: Cập nhật bàn (PUT)
+PUT http://localhost:8080/api/admin/tables/1
+Body: {"tableNumber": 1, "content": "Góc cửa sổ", "status": "OCCUPIED"}
+
+# ADMIN: Xóa bàn (DELETE)
+DELETE http://localhost:8080/api/admin/tables/1
+
+# USER: Lấy danh sách bàn (GET)
+GET http://localhost:8080/api/user/tables
+
+# USER: Tạo bàn (POST)
+POST http://localhost:8080/api/user/tables
+Body: {"tableNumber": 2, "content": "Gần quầy", "status": "AVAILABLE"}
+
+# USER: Cập nhật bàn (PUT)
+PUT http://localhost:8080/api/user/tables/2
+Body: {"tableNumber": 2, "content": "Gần quầy", "status": "OCCUPIED"}
+
+# USER: Xóa bàn (DELETE)
+DELETE http://localhost:8080/api/user/tables/2
